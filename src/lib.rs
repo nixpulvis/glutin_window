@@ -429,8 +429,7 @@ impl GlutinWindow {
 
 impl Window for GlutinWindow {
     fn size(&self) -> Size {
-        let size = self.ctx.window().get_inner_size().unwrap_or((0.0, 0.0).into());
-        (size.width, size.height).into()
+        self.draw_size()
     }
     fn draw_size(&self) -> Size {
         let size = self.ctx.window()
