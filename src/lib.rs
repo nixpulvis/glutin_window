@@ -343,8 +343,8 @@ impl GlutinWindow {
             Some(E::WindowEvent {
                 event: WE::CursorMoved{position, ..}, ..
             }) => {
-                let x = position.x;
-                let y = position.y;
+                let x = position.x * self.ctx.window().get_hidpi_factor();
+                let y = position.y * self.ctx.window().get_hidpi_factor();
 
                 if let Some(pos) = self.last_cursor_pos {
                     let dx = x - pos[0];
@@ -472,6 +472,7 @@ impl AdvancedWindow for GlutinWindow {
         // and setting the position to the center of window.
         self.is_capturing_cursor = value;
         self.ctx.window().hide_cursor(value);
+        println!("AISODAS");
         if value {
             self.fake_capture();
         }
